@@ -1,0 +1,108 @@
+/* 
+@keyframes color {
+  0%   {
+     background: #33CCCC; 
+    }
+  20%  { background: #33CC36; }
+  40%  { background: #B8CC33; }
+  60%  { background: #FCCA00; }
+  80%  { background: #33CC36; }
+  100% { background: #33CCCC; }
+}
+
+body {
+  background: #33CCCC; 
+  animation: color 9s infinite linear;
+  text-align: center;
+  padding: 2em;
+}
+h1 {
+  text-align: center;
+  font-family: 'Kavoon', sans-serif;
+  font-size: 2.5em;
+  color: white;
+} */
+
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:200');
+
+body  {
+    background-image: url('https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg');
+  background-size:cover;
+        -webkit-animation: slidein 100s;
+        animation: slidein 100s;
+
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+
+        -webkit-animation-direction: alternate;
+        animation-direction: alternate;              
+}
+
+@-webkit-keyframes slidein {
+from {background-position: top; background-size:3000px; }
+to {background-position: -100px 0px;background-size:2750px;}
+}
+
+@keyframes slidein {
+from {background-position: top;background-size:3000px; }
+to {background-position: -100px 0px;background-size:2750px;}
+
+}
+
+
+
+.center
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(75, 75, 250, 0.3);
+  border-radius: 3px;
+}
+.center h1{
+  text-align:center;
+  color:white;
+  font-family: 'Source Code Pro', monospace;
+  text-transform:uppercase;
+}
+.logout{
+    color:black;
+    font-weight: 500;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 6px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+.logout:hover{
+    background-color: rgb(8, 73, 236);
+}
+
+.logo-container{
+    background:  no-repeat;
+    width:100px;
+    height:50px;
+    position: absolute;
+    top:0;
+    left:0;
+}
+.logo-containerH{
+   position:fixed;
+   text-align:center;
+   top:40%;
+   left:45%;
+}
+.logo{width:100px;
+    height:50px;}
