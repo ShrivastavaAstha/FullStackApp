@@ -77,7 +77,7 @@
     position: absolute;
     top: 0;
     height: 100%;
-    transition: all 0.6s ease-in-out;
+    
 }
 .sign-in{
     left: 0;
@@ -87,8 +87,6 @@
 .sign-up{
     left: 0;
     width: 50%;
-    /* opacity: 0; */
-    /* z-index: 1; */
 }
 .toggle{
     background-color: linear-gradient(to left, #7f0e4a,#7f0e4a, #00ff8f);
@@ -99,8 +97,7 @@
     left: -100%;
     height: 100%;
     width: 200%;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;
+    
 }
 .toggle-container{
     position: absolute;
@@ -109,7 +106,6 @@
     width: 50%;
     height: 100%;
     overflow: hidden;
-    transition: all 0.6s ease-in-out;
     border-radius: 150px 0 0 100px;
     z-index: 1000;
 }
@@ -124,23 +120,14 @@
     padding: 0 30px;
     text-align: center;
     top: 0;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;
+     
 }
 .toggle-right{
     right: 0;
-    transform: translateX(0);
 }
 .toggle-left{
-    /* transform: translateX(-200%); */
     right: 0;
-    transform: translateX(0);
 }
-.container .sign-up{
-    transform: translateX(100%);
-}
-.container .toggle-left{
-    transform: translateX(0);}
 
     @media (max-width: 768px){
         .container{
