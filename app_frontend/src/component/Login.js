@@ -48,7 +48,7 @@ const Login = () => {
             />{" "}
             <br />
             <br />
-            {/* <label style={{ color: "blue" }}>
+            <label style={{ color: "blue" }}>
               Enter the OTP sent to the registered contact number.
             </label>
             <input
@@ -56,17 +56,11 @@ const Login = () => {
               value={isOtpSent}
               onChange={(e) => setisOtpSent(e.target.value)}
               placeholder="OTP"
-            /> */}
-            <button onClick={() => loginbtn()}>Login</button>
-            {/* <button
+            />
+            {/* <button onClick={() => loginbtn()}>Login</button> */}
+            <button
               type="button"
               onClick={() => {
-                <input
-                  type="number"
-                  value={isOtpSent}
-                  onChange={(e) => setisOtpSent(e.target.value)}
-                  placeholder="OTP"
-                />;
                 if (isOtpSent) {
                   navigate("/Profile");
                 } else {
@@ -75,7 +69,7 @@ const Login = () => {
               }}
             >
               Login
-            </button> */}
+            </button>
           </form>
         </div>
         <div className="toggle-container">

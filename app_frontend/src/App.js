@@ -4,6 +4,7 @@ import Signup from "./component/Signup";
 import Login from "./component/Login";
 import Otp from "./component/Otp";
 import Home from "./component/Home";
+import Profile from "./component/Profile";
 import PageNotFound from "./component/PageNotFound";
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/Login" Component={Login} />
           <Route path="/Otp" Component={Otp} />
           <Route path="/Signup" Component={Signup} />
+          <Route path="/Profile" Component={Profile} />
         </Routes>
       </Router>
       {/* <Login /> */}
