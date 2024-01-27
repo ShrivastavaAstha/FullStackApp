@@ -4,6 +4,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Signup.css";
+
 import logoimage from "./logo.png";
 const SignUp = () => {
   const navigate = useNavigate();
@@ -14,37 +15,44 @@ const SignUp = () => {
   const [password, setpassword] = useState("");
 
   const signupbtn = async () => {
-    if (
-      username.trim() === "" ||
-      contact.trim() === "" ||
-      email.trim() === "" ||
-      password.trim() === ""
-    )
-      return alert("Please Provide Complete Details.");
-    //toast.warning("Please Provide Complete Details.");
-    // else if (password.length < 6)
-    //   return toast.warning("Please set a password of more than 6 characters.");
-    else if (contact.length < 10)
-      return alert("Please provide a valid contact Number.");
-    // toast.warning("Please provide a valid contact number.");
-    setname("");
-    setcontact("");
-    setemail("");
-    setpassword("");
+    try {
+      if (
+        username.trim() === "" ||
+        contact.trim() === "" ||
+        email.trim() === "" ||
+        password.trim() === ""
+      )
+        return;
+      toast.warning("Please Provide Complete Details.");
+      if (contact.length < 10) return;
+      toast.warning("Please provide a valid contact number.");
+      setname("");
+      setcontact("");
+      setemail("");
+      setpassword("");
 
-    const response = await axios.post("/api/signup", {
-      username,
-      contact,
-      email,
-      password,
-    });
-    console.log(response);
-    if (response.data.success) {
-      toast.success("Account created successfully!");
-    } else alert("Email already registered!Please Login.");
-    //toast.error("Email already registered!Please Login.");
+      const response = await axios.post("/api/signup", {
+        username,
+        contact,
+        email,
+        password,
+      });
+      console.log(response);
+      if (response.data.success) {
+        toast.success("Account created successfully!");
+      }
+    } catch (error) {
+      console.log(error);
+      if (
+        error &&
+        error.response &&
+        error.response.data &&
+        error.response.data.error
+      ) {
+        toast.error(error.response.data.error);
+      }
+    }
   };
-
   return (
     <div className="login">
       <ToastContainer />

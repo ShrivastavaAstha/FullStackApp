@@ -38,7 +38,8 @@ body  {
         animation-iteration-count: infinite;
 
         -webkit-animation-direction: alternate;
-        animation-direction: alternate;              
+        animation-direction: alternate;  
+        overflow: hidden;            
 }
 
 @-webkit-keyframes slidein {
@@ -109,3 +110,4 @@ to {background-position: -100px 0px;background-size:2750px;}
   /* border: #fff solid 2px;
 border-radius:20px;
 padding:2px} */}
+

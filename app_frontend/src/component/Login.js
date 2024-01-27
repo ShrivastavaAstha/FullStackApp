@@ -13,13 +13,47 @@ const Login = () => {
   const [isOtpSent, setisOtpSent] = useState(false);
 
   const loginbtn = async () => {
-    if (email.trim() === "" || password.trim() === "")
-      return toast.warning("Please Provide Complete Details.");
+    try {
+      if (email.trim() === "" || password.trim() === "")
+        return toast.warning("Please Provide Complete Details.");
 
-    const response = await axios.post("/api/login", { email, password });
-    if (response.data.success) {
-      toast.success("Email and Password matched.");
-    } else toast.error("Invalid Email or Password");
+      const response = await axios.post("/api/login", { email, password });
+      if (response.data.success) {
+        toast.success("Email and Password matched.");
+      }
+    } catch (error) {
+      console.log(error);
+      if (
+        error &&
+        error.response &&
+        error.response.data &&
+        error.response.data.error
+      ) {
+        toast.error(error.response.data.error);
+      }
+    }
+  };
+
+  const codebtn = async () => {
+    try {
+      if (isOtpSent.trim() === "")
+        return toast.warning("Please Provide Complete Details.");
+
+      const response = await axios.post("/api/mfaverify", { isOtpSent });
+      if (response.data.success) {
+        toast.success("Login Successfull");
+      }
+    } catch (error) {
+      const codebtn = async () => {
+        if (isOtpSent.trim() === "")
+          return toast.warning("Please Provide Complete Details.");
+
+        const response = await axios.post("/api/mfaverify", { isOtpSent });
+        if (response.data.success) {
+          toast.success("Login Successfull");
+        } else toast.error("Incorrect OTP");
+      };
+    }
   };
 
   return (
@@ -48,23 +82,31 @@ const Login = () => {
             />{" "}
             <br />
             <br />
-            <label style={{ color: "blue" }}>
-              Enter the OTP sent to the registered contact number.
-            </label>
-            <input
-              type="number"
-              value={isOtpSent}
-              onChange={(e) => setisOtpSent(e.target.value)}
-              placeholder="OTP"
-            />
             {/* <button onClick={() => loginbtn()}>Login</button> */}
+            {codebtn() ? (
+              <div>
+                <label style={{ color: "blue" }}>
+                  Enter the OTP sent to the registered contact number.
+                </label>
+                <input
+                  type="number"
+                  value={isOtpSent}
+                  onChange={(e) => setisOtpSent(e.target.value)}
+                  placeholder="OTP"
+                />
+              </div>
+            ) : (
+              <></>
+            )}
             <button
               type="button"
               onClick={() => {
                 if (isOtpSent) {
-                  navigate("/Profile");
+                  // navigate("/profile");
+                  loginbtn();
                 } else {
-                  setisOtpSent(true);
+                  // setisOtpSent(true);
+                  codebtn();
                 }
               }}
             >
