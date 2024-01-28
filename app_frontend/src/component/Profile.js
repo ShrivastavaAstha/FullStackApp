@@ -12,6 +12,28 @@ const Profile = () => {
   const navigate = useNavigate();
   const [userdata, setuserdata] = useState();
 
+  const getUserData = async () => {
+    try {
+      const response = await axios.get("/currentuser");
+      if (response.data.success) {
+        setuserdata(response.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+      if (error.response.status === 401) {
+        toast.error("Session timed out! Login again");
+        navigate("/Login");
+      } else if (
+        error &&
+        error.response &&
+        error.response.data &&
+        error.response.data.error
+      ) {
+        toast.error(error.response.data.error);
+      }
+    }
+  };
+
   const handleLogout = async () => {
     try {
       const response = await axios.get("/logout");
@@ -35,46 +57,50 @@ const Profile = () => {
     navRef.current.classList.toggle("responsive_nav");
   };
 
-  return (
-    <>
-      <header>
-        <img className="logo" src={logoimage} alt="Logo" />
-        <nav ref={navRef}>
-          <h3 style={{ borderBottom: "white solid 2px" }}>LIFESYNC</h3>
-          <Link to="/">Login</Link>
-          <button
-            type="button"
-            onClick={() => handleLogout()}
-            style={{
-              backgroundColor: "transparent",
-              color: "white",
-              fontSize: "22px",
-            }}
-          >
-            Logout
-          </button>
-          <Link to="/Signup">Signup</Link>
+  useEffect(() => {
+    getUserData();
+  }, []);
+  if (userdata)
+    return (
+      <>
+        <header>
+          <img className="logo" src={logoimage} alt="Logo" />
+          <nav ref={navRef}>
+            <h3 style={{ borderBottom: "white solid 2px" }}>LIFESYNC</h3>
+            <Link to="/">Login</Link>
+            <button
+              type="button"
+              onClick={() => handleLogout()}
+              style={{
+                backgroundColor: "transparent",
+                color: "white",
+                fontSize: "22px",
+              }}
+            >
+              Logout
+            </button>
+            <Link to="/Signup">Signup</Link>
 
-          <button className="nav-btn nav-close-btn" onClick={showNavbar}>
+            <button className="nav-btn nav-close-btn" onClick={showNavbar}>
+              <MenuIcon />
+            </button>
+          </nav>
+          <button className="nav-btn" onClick={showNavbar}>
             <MenuIcon />
           </button>
-        </nav>
-        <button className="nav-btn" onClick={showNavbar}>
-          <MenuIcon />
-        </button>
-      </header>
-      <ToastContainer />
-      <div className="mainbody">
-        <h1>Hello! {userdata.name}, Welcome .</h1>
-        {/* <p>
+        </header>
+        <ToastContainer />
+        <div className="mainbody">
+          <h1>Hello! {userdata.username}, Welcome .</h1>
+          {/* <p>
           Age: {new Date().getFullYear() - new Date(userdata.dob).getFullYear()}{" "}
           Years
         </p> */}
-        <p>Email: {userdata.email}</p>
-        <p>Contact Number: {userdata.contact}</p>
-      </div>
-    </>
-  );
+          <p>Email: {userdata.email}</p>
+          <p>Contact Number: {userdata.contact}</p>
+        </div>
+      </>
+    );
 };
 
 export default Profile;
