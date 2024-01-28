@@ -13,7 +13,7 @@ const { sendLoginOtp, verifyOtp } = require("./functions/otp");
 const checkIfUserLoggedIn = (req, res, next) => {
   if (verifyToken(req.cookies.auth_tk)) {
     const userinfo = verifyToken(req.cookies.auth_tk);
-    req.userid = userinfo.indexOf;
+    req.userid = userinfo.id;
     next();
   } else {
     return res.status(400).json({ success: false, error: "UNAUTHORIZED" });
@@ -117,8 +117,8 @@ app.get("/currentuser", checkIfUserLoggedIn, async (req, res) => {
   try {
     const userid = req.userid;
     const userdetails = await signupmodel.findOne(
-      { _id: userid },
-      { email: 1, name: 1, contact: 1, cratedAt: 1 }
+      { _id: userid }
+      // { email: 1, username: 1, contact: 1, cratedAt: 1 }
     );
     if (userdetails) {
       return res.json({ success: true, data: userdetails });
@@ -131,6 +131,15 @@ app.get("/currentuser", checkIfUserLoggedIn, async (req, res) => {
   }
 });
 
+app.get("/logout", (req, res) => {
+  try {
+    res.clearCookie("auth_tk");
+    return res.json({ success: true });
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ success: false, error: error.message });
+  }
+});
 const PORT = 5000;
 connectDatabase();
 app.listen(PORT, async () => {

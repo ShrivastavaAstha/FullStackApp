@@ -8,7 +8,7 @@ import "./Profile.css";
 import logoimage from "./logo.png";
 
 const Profile = () => {
-  const navRef = useRef();
+  // const navRef = useRef();
   const navigate = useNavigate();
   const [userdata, setuserdata] = useState();
 
@@ -53,9 +53,9 @@ const Profile = () => {
       }
     }
   };
-  const showNavbar = () => {
-    navRef.current.classList.toggle("responsive_nav");
-  };
+  // const showNavbar = () => {
+  //   navRef.current.classList.toggle("responsive_nav");
+  // };
 
   useEffect(() => {
     getUserData();
@@ -63,7 +63,7 @@ const Profile = () => {
   if (userdata)
     return (
       <>
-        <header>
+        {/* <header>
           <img className="logo" src={logoimage} alt="Logo" />
           <nav ref={navRef}>
             <h3 style={{ borderBottom: "white solid 2px" }}>LIFESYNC</h3>
@@ -88,7 +88,7 @@ const Profile = () => {
           <button className="nav-btn" onClick={showNavbar}>
             <MenuIcon />
           </button>
-        </header>
+        </header> */}
         <ToastContainer />
         <div className="mainbody">
           <h1>Hello! {userdata.username}, Welcome .</h1>
@@ -98,6 +98,18 @@ const Profile = () => {
         </p> */}
           <p>Email: {userdata.email}</p>
           <p>Contact Number: {userdata.contact}</p>
+
+          <button
+            type="button"
+            onClick={() => handleLogout()}
+            style={{
+              backgroundColor: "transparent",
+              color: "white",
+              fontSize: "22px",
+            }}
+          >
+            Logout
+          </button>
         </div>
       </>
     );

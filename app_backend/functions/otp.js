@@ -1,6 +1,6 @@
 const TWILIO_SERVICE_ID = "VAb3ba88f2d161e0c46c38a78e1fdf0a27";
 const TWILIO_ACCOUNT_ID = "ACf92fccba40cbdb88ded7a4a43e58b752";
-const TWILIO_AUTH_TOKEN = "1ba5833a9a8f01fa12e2c807a0b69ed7";
+const TWILIO_AUTH_TOKEN = "91a6b7f0a5f2334eeffcc18a34824d49";
 
 const client = require("twilio")(TWILIO_ACCOUNT_ID, TWILIO_AUTH_TOKEN);
 const sendLoginOtp = (userphone) => {
