@@ -13,7 +13,7 @@ const SignUp = () => {
   const [contact, setcontact] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-
+  const [date, setdate] = useState("");
   const signupbtn = async () => {
     try {
       if (
@@ -36,6 +36,7 @@ const SignUp = () => {
         contact,
         email,
         password,
+        dob: date,
       });
       console.log(response);
       if (response.data.success) {
@@ -83,6 +84,13 @@ const SignUp = () => {
               onChange={(e) => setpassword(e.target.value)}
               type="password"
               placeholder="Password"
+            />
+            <br />
+            <input
+              value={date}
+              onChange={(e) => setdate(e.target.value)}
+              type="date"
+              placeholder="DOB"
             />
             <br />
             <input

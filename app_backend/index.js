@@ -40,6 +40,7 @@ app.post("/api/signup", async (req, res) => {
       username: req.body.username,
       email: req.body.email,
       password: await encryptPassword(req.body.password),
+      dob: req.body.dob,
       contact: req.body.contact,
     };
     console.log(obj);
