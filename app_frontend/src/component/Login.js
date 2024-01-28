@@ -11,6 +11,7 @@ const Login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [isOtpSent, setisOtpSent] = useState(false);
+  const [otp, setOtp] = useState(null);
 
   const loginbtn = async () => {
     try {
@@ -19,7 +20,8 @@ const Login = () => {
 
       const response = await axios.post("/api/login", { email, password });
       if (response.data.success) {
-        toast.success("Email and Password matched.");
+        toast.success(response.data.message);
+        setisOtpSent(true);
       }
     } catch (error) {
       console.log(error);
@@ -34,25 +36,29 @@ const Login = () => {
     }
   };
 
-  const codebtn = async () => {
+  const handleOtpVerify = async () => {
     try {
-      if (isOtpSent.trim() === "")
+      if (email.trim() === "" || password.trim() === "")
         return toast.warning("Please Provide Complete Details.");
-
-      const response = await axios.post("/api/mfaverify", { isOtpSent });
+      const response = await axios.post("/api/mfaverify", {
+        email,
+        password,
+        code: otp,
+      });
       if (response.data.success) {
-        toast.success("Login Successfull");
+        toast.success("Welcome To LIFESYNC!");
+        navigate("/profile");
       }
     } catch (error) {
-      const codebtn = async () => {
-        if (isOtpSent.trim() === "")
-          return toast.warning("Please Provide Complete Details.");
-
-        const response = await axios.post("/api/mfaverify", { isOtpSent });
-        if (response.data.success) {
-          toast.success("Login Successfull");
-        } else toast.error("Incorrect OTP");
-      };
+      console.log(error);
+      if (
+        error &&
+        error.response &&
+        error.response.data &&
+        error.response.data.error
+      ) {
+        toast.error(error.response.data.error);
+      }
     }
   };
 
@@ -82,16 +88,15 @@ const Login = () => {
             />{" "}
             <br />
             <br />
-            {/* <button onClick={() => loginbtn()}>Login</button> */}
-            {codebtn() ? (
+            {isOtpSent ? (
               <div>
                 <label style={{ color: "blue" }}>
                   Enter the OTP sent to the registered contact number.
                 </label>
                 <input
                   type="number"
-                  value={isOtpSent}
-                  onChange={(e) => setisOtpSent(e.target.value)}
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
                   placeholder="OTP"
                 />
               </div>
@@ -102,11 +107,9 @@ const Login = () => {
               type="button"
               onClick={() => {
                 if (isOtpSent) {
-                  // navigate("/profile");
-                  loginbtn();
+                  handleOtpVerify();
                 } else {
-                  // setisOtpSent(true);
-                  codebtn();
+                  loginbtn();
                 }
               }}
             >

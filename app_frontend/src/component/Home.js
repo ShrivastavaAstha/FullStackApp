@@ -16,6 +16,7 @@ const Home = () => {
 
         <div className="content">
           <button
+            className="glow-on-hover"
             onClick={() => {
               navigate("/Login");
             }}
