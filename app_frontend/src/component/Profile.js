@@ -8,7 +8,7 @@ import "./Profile.css";
 import logoimage from "./logo.png";
 
 const Profile = () => {
-  // const navRef = useRef();
+  const navRef = useRef();
   const navigate = useNavigate();
   const [userdata, setuserdata] = useState();
 
@@ -53,9 +53,9 @@ const Profile = () => {
       }
     }
   };
-  // const showNavbar = () => {
-  //   navRef.current.classList.toggle("responsive_nav");
-  // };
+  const showNavbar = () => {
+    navRef.current.classList.toggle("responsive_nav");
+  };
 
   useEffect(() => {
     getUserData();
@@ -63,7 +63,7 @@ const Profile = () => {
   if (userdata)
     return (
       <>
-        {/* <header>
+        <header>
           <img className="logo" src={logoimage} alt="Logo" />
           <nav ref={navRef}>
             <h3 style={{ borderBottom: "white solid 2px" }}>LIFESYNC</h3>
@@ -88,16 +88,50 @@ const Profile = () => {
           <button className="nav-btn" onClick={showNavbar}>
             <MenuIcon />
           </button>
-        </header> */}
+        </header>
+        <br />
         <ToastContainer />
         <div className="mainbody">
-          <h1>Hello! {userdata.username}, Welcome .</h1>
-          {/* <p>
-          Age: {new Date().getFullYear() - new Date(userdata.dob).getFullYear()}{" "}
-          Years
-        </p> */}
-          <p>Email: {userdata.email}</p>
-          <p>Contact Number: {userdata.contact}</p>
+          <marquee>
+            <h1
+              style={{
+                color: "white",
+                fontFamily: "cursive",
+                textShadow: "2px 2px blue",
+              }}
+            >
+              Hello! {userdata.username}, Welcome To LIFESYNC .
+            </h1>
+          </marquee>
+          <p
+            style={{
+              color: "white",
+              fontFamily: "inherit",
+              marginLeft: "20px",
+            }}
+          >
+            Age:{" "}
+            {new Date().getFullYear() - new Date(userdata.dob).getFullYear()}{" "}
+            Years
+          </p>
+          <p
+            style={{
+              color: "white",
+              fontFamily: "inherit",
+              marginLeft: "20px",
+            }}
+          >
+            Email: {userdata.email}
+          </p>
+          <p
+            style={{
+              color: "white",
+              fontFamily: "inherit",
+              marginLeft: "20px",
+            }}
+          >
+            Contact Number: {userdata.contact}
+          </p>
 
           <button
             type="button"
