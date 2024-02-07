@@ -1,0 +1,18 @@
+.about{
+   background: rgb(174, 156, 234);
+   height: 1500px;
+  color: aliceblue;
+}
+.gif{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  
+
+}
+.headingabt{
+    text-align:center;
+    font-size: 30px;
+    font-style: italic;
+    text-shadow: blue 2px 2px;
+}

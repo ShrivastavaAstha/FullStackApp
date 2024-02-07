@@ -4,6 +4,7 @@ import Signup from "./component/Signup";
 import Login from "./component/Login";
 import Otp from "./component/Otp";
 import Home from "./component/Home";
+import About from "./component/About";
 import Profile from "./component/Profile";
 import NotFound from "./component/NotFound";
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" Component={Home} />
+          <Route path="/About" Component={About} />
           <Route path="/Login" Component={Login} />
           <Route path="/Otp" Component={Otp} />
           <Route path="/Signup" Component={Signup} />

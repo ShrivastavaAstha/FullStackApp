@@ -59,6 +59,9 @@ const SignUp = () => {
       <ToastContainer />
       <div className="logo-container">
         <img className="logo" src={logoimage} alt="Logo" />
+        <h3 style={{ color: "rgb(76, 66, 163)", marginLeft: "6px" }}>
+          LIFESYNC
+        </h3>
       </div>
       <div className="container1">
         <div className="form-container1 sign-up">

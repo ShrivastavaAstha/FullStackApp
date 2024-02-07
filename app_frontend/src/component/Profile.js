@@ -103,6 +103,7 @@ const Profile = () => {
               Hello! {userdata.username}, Welcome To LIFESYNC .
             </h1>
           </marquee>
+
           <p
             style={{
               color: "white",

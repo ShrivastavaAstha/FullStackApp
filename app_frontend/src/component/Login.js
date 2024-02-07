@@ -63,89 +63,94 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
-      <ToastContainer />
-      <div className="logo-container">
-        <img className="logo" src={logoimage} alt="Logo" />
-      </div>
-      <div className="container">
-        <div className="form-container sign-in">
-          <form>
-            <h1>Login</h1>
-            <br />
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setemail(e.target.value)}
-              placeholder="Email"
-            />
-            <br />
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setpassword(e.target.value)}
-              placeholder="Password"
-            />{" "}
-            <br />
-            <br />
-            {isOtpSent ? (
-              <div>
-                <label style={{ color: "blue" }}>
-                  Enter the OTP sent to the registered contact number.
-                </label>
-                <input
-                  type="number"
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                  placeholder="OTP"
-                />
-              </div>
-            ) : (
-              <></>
-            )}
-            <button
-              type="button"
-              onClick={() => {
-                if (isOtpSent) {
-                  handleOtpVerify();
-                } else {
-                  loginbtn();
-                }
-              }}
-            >
-              Login
-            </button>
-          </form>
+    <>
+      <div className="login">
+        <ToastContainer />
+        <div className="logo-container">
+          <img className="logo" src={logoimage} alt="Logo" />
+          <h3 style={{ color: "rgb(76, 66, 163)", marginLeft: "6px" }}>
+            LIFESYNC
+          </h3>
         </div>
-        <div className="toggle-container">
-          <div className="toggle">
-            <div className="toggle-panel toggle-right">
-              <h1> Welcome</h1>
-              <p>Enter your details to use features .</p>
-              <p>New to the app?</p>
-
+        <div className="container">
+          <div className="form-container sign-in">
+            <form>
+              <h1>Login</h1>
+              <br />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setemail(e.target.value)}
+                placeholder="Email"
+              />
+              <br />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setpassword(e.target.value)}
+                placeholder="Password"
+              />{" "}
+              <br />
+              <br />
+              {isOtpSent ? (
+                <div>
+                  <label style={{ color: "blue" }}>
+                    Enter the OTP sent to the registered contact number.
+                  </label>
+                  <input
+                    type="number"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    placeholder="OTP"
+                  />
+                </div>
+              ) : (
+                <></>
+              )}
               <button
-                className="hidden"
+                type="button"
                 onClick={() => {
-                  navigate("/Signup");
+                  if (isOtpSent) {
+                    handleOtpVerify();
+                  } else {
+                    loginbtn();
+                  }
                 }}
               >
-                Sign Up
+                Login
               </button>
+            </form>
+          </div>
+          <div className="toggle-container">
+            <div className="toggle">
+              <div className="toggle-panel toggle-right">
+                <h1> Welcome</h1>
+                <p>Enter your details to use features .</p>
+                <p>New to the app?</p>
+
+                <button
+                  className="hidden"
+                  onClick={() => {
+                    navigate("/Signup");
+                  }}
+                >
+                  Sign Up
+                </button>
+              </div>
             </div>
           </div>
         </div>
+        <br />
+        <button
+          className="logout"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          LogOut
+        </button>
       </div>
-      <br />
-      <button
-        className="logout"
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        LogOut
-      </button>
-    </div>
+    </>
   );
 };
 

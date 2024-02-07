@@ -74,6 +74,7 @@ to {background-position: -100px 0px;background-size:2750px;}
   color:white;
   font-family: 'Source Code Pro', monospace;
   text-transform:uppercase;
+  text-shadow: rgb(8, 73, 236) 2px 2px;
 }
 .logout{
     color:black;
@@ -102,28 +103,12 @@ to {background-position: -100px 0px;background-size:2750px;}
 .logo-containerH{
    position:fixed;
    text-align:center;
-   top:40%;
+   top:35%;
    left:46%;
 }
 .logo{width:100px;
     height:50px;
-  /* border: #fff solid 2px;
-border-radius:20px;
- padding:2px} */}
-
-/*HTML CSS Result Skip Results Iframe
-html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background: #000;
-} */
+}
 
  .glow-on-hover {
     width: 220px;
@@ -136,6 +121,7 @@ body {
     position: relative;
     z-index: 0;
     border-radius: 10px;
+    box-shadow: rgb(8, 202, 236) 2px 2px;
 }
 
 .glow-on-hover:before {

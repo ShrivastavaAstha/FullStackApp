@@ -106,6 +106,7 @@ app.post("/api/mfaverify", async (req, res) => {
     ) {
       const token = generateToken(checkuser._id);
       res.cookie("auth_tk", token);
+      console.log(token);
       return res.json({ success: true, message: "Logged in successfully." });
     }
   } catch (error) {
